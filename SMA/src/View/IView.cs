@@ -10,5 +10,6 @@ namespace SMA.src.View
         void InitView();
         void UpdateView();
         bool IsRunning();
+        void setFPS(int fps);
     }
 }

@@ -14,6 +14,7 @@ namespace SMA.src.Model
 
         // Méthodes
 
+        public Chasseuse(int type, String nom) : base(type, nom) { }
 
         public void chasser()
         {

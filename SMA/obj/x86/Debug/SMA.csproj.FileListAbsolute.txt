@@ -22,3 +22,14 @@ C:\Users\mohamed\Desktop\sma250113\SMA\SMA\bin\Debug\sfmlnet-audio.dll
 C:\Users\mohamed\Desktop\sma250113\SMA\SMA\bin\Debug\sfmlnet-graphics.dll
 C:\Users\mohamed\Desktop\sma250113\SMA\SMA\bin\Debug\sfmlnet-window.dll
 C:\Users\mohamed\Desktop\sma250113\SMA\SMA\obj\x86\Debug\SMA.csprojResolveAssemblyReference.cache
+E:\SMA\projet\SMA\obj\x86\Debug\SMA.exe
+E:\SMA\projet\SMA\obj\x86\Debug\SMA.pdb
+E:\SMA\projet\SMA\bin\Debug\SMA.exe
+E:\SMA\projet\SMA\bin\Debug\SMA.pdb
+E:\SMA\projet\SMA\bin\Debug\sfmlnet-audio.dll
+E:\SMA\projet\SMA\bin\Debug\sfmlnet-graphics.dll
+E:\SMA\projet\SMA\bin\Debug\sfmlnet-window.dll
+E:\SMA\projet\SMA\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\SMA\projet\SMA\obj\x86\Debug\SMA.src.View.ConfigWin.resources
+E:\SMA\projet\SMA\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\SMA\projet\SMA\obj\x86\Debug\GenerateResource.write.1.tlog

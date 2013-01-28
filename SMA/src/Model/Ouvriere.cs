@@ -14,7 +14,7 @@ namespace SMA.src.Model
 
         // Méthodes
 
-
+        public Ouvriere(int type, String nom) : base(type, nom) { }
 
     }
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using SMA.src.View;
 using NPack;
+using SMA.Model;
+using SMA.src.Model;
 
 namespace SMA.src.Controller
 {
@@ -24,32 +26,142 @@ namespace SMA.src.Controller
         }
 
 
-        MersenneTwister _rand; // Makoto : le retour
+        //MersenneTwister _rand; // Makoto : le retour
 
 
         // contrôleur privé pour le singleton
         private MainController()
         {
+            // valeurs par défaut pour la simu
+            _rows = 100;
+            _cols = 100;
+            _tourCourant = 0;
+            _paused = false;
+            _view = new ViewSFML();
+            _fps = 10;
+        }
+
+
+        // permet de relancer la simu avec des options autres que celles par défaut
+        public void ResetAll(int nbrcol, int nbrrow, int fps)
+        {
+            _rows = nbrrow;
+            _cols = nbrcol;
+            _tourCourant = 0;
+            //_paused = false;
+            _view = new ViewSFML();
+            _fps = fps;
+        }
+
+
+        // Vue
+        private IView _view; // pourrait être changé pour un autre type de Vue implémentant IView !
+
+        public IView View
+        {
+            get { return _view; }
+            set { _view = value; }
+        }
+
+
+        private int _cols; // nombre de colonnes
+
+        public int Cols
+        {
+            get { return _cols; }
+            set { _cols = value; }
+        }
+
+
+        private int _rows; // nombre de lignes
+
+        public int Rows
+        {
+            get { return _rows; }
+            set { _rows = value; }
+        }
+
+
+        private int _fps; // framerate
+
+        public int Fps
+        {
+            get { return _fps; }
+            set { _fps = value; }
+        }
+
+
+        private int _tourCourant;
+
+        public int TourCourant
+        {
+            get { return _tourCourant; }
+            set { _tourCourant = value; }
         }
 
 
 
-        // Vue
-        IView view = new ViewSFML(); // pourrait être changé pour un autre type de Vue implémentant IView !
+
+        private bool _paused;
+
+        public bool Paused
+        {
+            get { return _paused; }
+            set { _paused = value; }
+        }
 
 
         // Méthode principale
         public void Execute()
         {
-            _rand = new MersenneTwister((int)DateTime.Now.Ticks);
+            // on a quelques fourmis de départ
 
-            view.InitView(); // initialisation de la vue
+            for (int i = 0 ; i < 10 ; ++i)
+                Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_CHASSEUSE);
 
-            while (view.IsRunning()) // tant que la vue est ouverte
+            for (int i = 0; i < 10; ++i)
+                Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_NOURRICE);
+
+            for (int i = 0; i < 30; ++i)
+                Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_OUVRIERE);
+
+
+            _view.InitView(); // initialisation de la vue
+            _view.setFPS(_fps);
+
+
+            // tant que la vue est ouverte et qu'il y a des petites fourmis
+            while (_view.IsRunning() && Fourmiliere.Instance.NbrFourmis > 1)
             {
-                Console.WriteLine(_rand.Next(0, 100));
-                view.UpdateView(); // on met à jour la vue
+                if (!_paused)
+                {
+                    Console.WriteLine("\n*** JOUR " + _tourCourant + " ***\n");
+                    Console.WriteLine("Nombre de fourmis : " + Fourmiliere.Instance.NbrFourmis);
+                    Console.WriteLine("Nombre de fourmis chasseuses : " + Fourmiliere.Instance.NbrChasseuses);
+                    Console.WriteLine("Nombre de fourmis ouvrières : " + Fourmiliere.Instance.NbrOuvrieres);
+                    Console.WriteLine("Nombre de fourmis nourrices : " + Fourmiliere.Instance.NbrNourrices);
+
+                    // on utilise une copie de la liste car elle peut être modifiée !
+                    Fourmi[] list = new Fourmi[Fourmiliere.Instance.NbrFourmis];
+                    Fourmiliere.Instance.ListFourmis.CopyTo(list);
+
+                    // pour toutes les fourmis
+                    foreach (Fourmi f in list)
+                    {
+                        f.VieMaVieDeFourmi(_tourCourant);
+                    }
+
+                    _tourCourant++;
+                }
+
+                _view.UpdateView(); // on met à jour la vue
+
+                GC.Collect();
             }
+
+            Console.WriteLine("\n\nGAME OVER...\n");
+
+            //Console.ReadKey();
         }
     }
 }

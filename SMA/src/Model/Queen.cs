@@ -14,10 +14,11 @@ namespace SMA.src.Model
 
         // Méthodes
 
+        public Queen(int type, String nom) : base(type, nom) { }
 
         public Fourmi pondre()
         {
-            return new Fourmi();
+            return null;
         }
     }
 }

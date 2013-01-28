@@ -2,22 +2,41 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using NPack;
 
-namespace NPack
+namespace SMA.src.Model
 {
     class Distributions
     {
+        private static Distributions _instance;
+
+        public static Distributions Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new Distributions();
+ 
+                return _instance;
+            }
+        }
+
+        private Distributions()
+        {
+            _mt = new MersenneTwister((int)DateTime.Now.Ticks);
+        }
+
     
-        MersenneTwister mt = new MersenneTwister((int) DateTime.Now.Ticks);
+        MersenneTwister _mt;
         private bool _gauss = false;
         private double _gaussResult = 0.0;
 
-         double Unif()
+        public double Unif()
         {
-            return mt.NextDouble(true);
+            return _mt.NextDouble(true);
         }
 
-        double Gaussienne(double moyenne, double sigma)
+        public double Gaussienne(double moyenne, double sigma)
         {
 
             if(sigma <= 0)
@@ -45,21 +64,21 @@ namespace NPack
             return (y*sqrt*sigma + moyenne);
         }
 
-        int PileOuFace()
+        public int PileOuFace()
         {
             double x = Unif();
             return (x > 0.5)? 0 : 1;
         }
  
 
-        double PseudoAleatoire(long min, long max)
+        public double PseudoAleatoire(long min, long max)
         {
             if(min > max)
                 throw new ArgumentOutOfRangeException("min","Min is greater than max.");
            return (min + Unif()*(max - min + 1));
         }
 
-        int Histo()
+        public int Histo()
         {
             throw new NotImplementedException();
         }
