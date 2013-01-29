@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="45bca9dd-0909-4cfa-b0ec-b50a5adf9a7e" name="gg@LAPETAUPE 2013-01-29 10:30:07" runUser="Lapetaupe\gg" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Paramètres de test par défaut" id="a4ff2631-8297-499b-aa47-bd6e7c856bc2">
+    <Deployment runDeploymentRoot="gg_LAPETAUPE 2013-01-29 10_30_07">
+      <DeploymentItem filename="E:\SMA\projet\SMA\bin\Debug\SMA.exe" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-01-29T10:30:07.1729806+01:00" queuing="2013-01-29T10:30:12.6022911+01:00" start="2013-01-29T10:30:12.9623117+01:00" finish="2013-01-29T10:30:15.8084745+01:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="4" executed="4" passed="4" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestMortFourmi" storage="e:\sma\projet\sma.test\bin\debug\sma.test.dll" id="ff34a67e-1fff-77b9-b294-a406dfbc9f22">
+      <Execution id="546168bf-1f47-4c34-bb6b-5c01d45fa2a8" />
+      <TestMethod codeBase="E:/SMA/projet/SMA.Test/bin/Debug/SMA.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SMA.Test.FourmiTest, SMA.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestMortFourmi" />
+    </UnitTest>
+    <UnitTest name="TestPileOuFace" storage="e:\sma\projet\sma.test\bin\debug\sma.test.dll" id="790c8a1c-de1c-4ca4-9eaf-850731dc37ae">
+      <Execution id="c739328e-0198-45e6-ab06-b6afebed8d6f" />
+      <TestMethod codeBase="E:/SMA/projet/SMA.Test/bin/Debug/SMA.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SMA.Test.DistributionsTest, SMA.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestPileOuFace" />
+    </UnitTest>
+    <UnitTest name="TestExistanceReine" storage="e:\sma\projet\sma.test\bin\debug\sma.test.dll" id="bec9b81c-f6a6-fb6e-f94a-6ed1be649ada">
+      <Execution id="ac6a0c75-1add-457e-8ed9-8b26d39f2491" />
+      <TestMethod codeBase="E:/SMA/projet/SMA.Test/bin/Debug/SMA.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SMA.Test.FourmiTest, SMA.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestExistanceReine" />
+    </UnitTest>
+    <UnitTest name="TestNaissanceFourmi" storage="e:\sma\projet\sma.test\bin\debug\sma.test.dll" id="75976c02-41ee-b188-1ec7-c8e342c17d2f">
+      <Execution id="ff64308c-c06c-4fbd-b1bd-0398248af68e" />
+      <TestMethod codeBase="E:/SMA/projet/SMA.Test/bin/Debug/SMA.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SMA.Test.FourmiTest, SMA.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestNaissanceFourmi" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Les résultats ne figurent pas dans une liste" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Tous les résultats chargés" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="75976c02-41ee-b188-1ec7-c8e342c17d2f" executionId="ff64308c-c06c-4fbd-b1bd-0398248af68e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ff34a67e-1fff-77b9-b294-a406dfbc9f22" executionId="546168bf-1f47-4c34-bb6b-5c01d45fa2a8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bec9b81c-f6a6-fb6e-f94a-6ed1be649ada" executionId="ac6a0c75-1add-457e-8ed9-8b26d39f2491" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="790c8a1c-de1c-4ca4-9eaf-850731dc37ae" executionId="c739328e-0198-45e6-ab06-b6afebed8d6f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="ff64308c-c06c-4fbd-b1bd-0398248af68e" testId="75976c02-41ee-b188-1ec7-c8e342c17d2f" testName="TestNaissanceFourmi" computerName="LAPETAUPE" duration="00:00:00.2741940" startTime="2013-01-29T10:30:13.0703179+01:00" endTime="2013-01-29T10:30:15.0404306+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ff64308c-c06c-4fbd-b1bd-0398248af68e">
+      <Output>
+        <StdOut>Kyukyuni_0 (type = 3) is born.
+hunter_1 (type = 0) is born.
+nurse_2 (type = 1) is born.
+worker_3 (type = 2) is born.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="546168bf-1f47-4c34-bb6b-5c01d45fa2a8" testId="ff34a67e-1fff-77b9-b294-a406dfbc9f22" testName="TestMortFourmi" computerName="LAPETAUPE" duration="00:00:00.0026042" startTime="2013-01-29T10:30:15.0654320+01:00" endTime="2013-01-29T10:30:15.0824330+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="546168bf-1f47-4c34-bb6b-5c01d45fa2a8">
+      <Output>
+        <StdOut>hunter_4 (type = 0) is born.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="ac6a0c75-1add-457e-8ed9-8b26d39f2491" testId="bec9b81c-f6a6-fb6e-f94a-6ed1be649ada" testName="TestExistanceReine" computerName="LAPETAUPE" duration="00:00:00.0005320" startTime="2013-01-29T10:30:15.1184350+01:00" endTime="2013-01-29T10:30:15.1334359+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ac6a0c75-1add-457e-8ed9-8b26d39f2491">
+    </UnitTestResult>
+    <UnitTestResult executionId="c739328e-0198-45e6-ab06-b6afebed8d6f" testId="790c8a1c-de1c-4ca4-9eaf-850731dc37ae" testName="TestPileOuFace" computerName="LAPETAUPE" duration="00:00:00.5206358" startTime="2013-01-29T10:30:15.1404363+01:00" endTime="2013-01-29T10:30:15.6764670+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c739328e-0198-45e6-ab06-b6afebed8d6f">
+    </UnitTestResult>
+  </Results>
+</TestRun>

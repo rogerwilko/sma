@@ -69,11 +69,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\Controller\ConfigController.cs" />
     <Compile Include="src\Model\Distributions.cs" />
     <Compile Include="src\Controller\MainController.cs" />
     <Compile Include="src\Model\Chasseuse.cs" />
     <Compile Include="src\Model\Fourmi.cs" />
     <Compile Include="src\Model\Fourmiliere.cs" />
+    <Compile Include="src\Model\GroupeFourmis.cs" />
     <Compile Include="src\Model\MersenneTwister.cs" />
     <Compile Include="src\Model\Nourrice.cs" />
     <Compile Include="src\Model\Ouvriere.cs" />

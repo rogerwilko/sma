@@ -6,7 +6,7 @@ using NPack;
 
 namespace SMA.src.Model
 {
-    class Distributions
+    public class Distributions
     {
         private static Distributions _instance;
 

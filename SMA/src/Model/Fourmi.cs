@@ -7,7 +7,7 @@ using SMA.src.Model;
 
 namespace SMA.Model
 {
-    class Fourmi
+    public class Fourmi
     {
         // Propriétés
 
@@ -21,7 +21,7 @@ namespace SMA.Model
         }
 
 
-        private int _posX, posY;
+        private int _posX, _posY;
 
         public int PosX
         {
@@ -31,8 +31,8 @@ namespace SMA.Model
 
         public int PosY
         {
-            get { return posY; }
-            set { posY = value; }
+            get { return _posY; }
+            set { _posY = value; }
         }
 
 
@@ -77,6 +77,9 @@ namespace SMA.Model
             _type = typ;
             _nom = nom;
 
+            _posX = MainController.Instance.Rows / 2;
+            _posY = MainController.Instance.Cols / 2;
+
             Console.WriteLine(nom + " (type = "+typ+") is born.");
         }
 
@@ -116,12 +119,12 @@ namespace SMA.Model
 
             if(Type != Fourmiliere.TYPE_QUEEN) // la reine est immortelle
             {
-                int p = (int)Distributions.Instance.PseudoAleatoire(500, 10000);
+                int p = (int)Distributions.Instance.PseudoAleatoire(100, 2000);
                 //Console.WriteLine("p = " + p);
 
                 if (age > p) // Probabilité de mourir dans d'atroces souffrances
                 {
-                    //Fourmiliere.Instance.KillFourmi(this); // adieu monde cruel
+                    Fourmiliere.Instance.KillFourmi(this); // adieu monde cruel
                 }
             }
 

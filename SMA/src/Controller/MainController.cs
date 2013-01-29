@@ -37,7 +37,7 @@ namespace SMA.src.Controller
             _cols = 100;
             _tourCourant = 0;
             _paused = false;
-            _view = new ViewSFML();
+            //_view = new ViewSFML();
             _fps = 10;
         }
 
@@ -48,9 +48,13 @@ namespace SMA.src.Controller
             _rows = nbrrow;
             _cols = nbrcol;
             _tourCourant = 0;
-            //_paused = false;
-            _view = new ViewSFML();
+            _paused = false;
+            //_view = new ViewSFML();
             _fps = fps;
+
+            Fourmiliere.Instance.KillThemAll();
+
+            Execute();
         }
 
 
@@ -114,6 +118,13 @@ namespace SMA.src.Controller
         // Méthode principale
         public void Execute()
         {
+            if (_view == null)
+            {
+                _view = new ViewSFML();
+                _view.InitView(); // initialisation de la vue
+            }
+
+
             // on a quelques fourmis de départ
 
             for (int i = 0 ; i < 10 ; ++i)
@@ -125,9 +136,11 @@ namespace SMA.src.Controller
             for (int i = 0; i < 30; ++i)
                 Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_OUVRIERE);
 
-
-            _view.InitView(); // initialisation de la vue
+            
             _view.setFPS(_fps);
+
+
+            ConfigController.Instance.ShowWin(); // fenêtre de configuration
 
 
             // tant que la vue est ouverte et qu'il y a des petites fourmis
@@ -150,6 +163,12 @@ namespace SMA.src.Controller
                     {
                         f.VieMaVieDeFourmi(_tourCourant);
                     }
+
+
+                    // reine
+
+                    Fourmiliere.Instance.Reine.Pondre();
+
 
                     _tourCourant++;
                 }

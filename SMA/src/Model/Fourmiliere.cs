@@ -6,7 +6,7 @@ using SMA.Model;
 
 namespace SMA.src.Model
 {
-    class Fourmiliere
+    public class Fourmiliere
     {
         private static Fourmiliere _instance;
 
@@ -60,14 +60,14 @@ namespace SMA.src.Model
             set { _nbrChasseuses = value; }
         }
 
-        // nombre de larves
+       /* // nombre de larves
         private int _nbrLarves;
 
         public int NbrLarves
         {
             get { return _nbrLarves; }
             set { _nbrLarves = value; }
-        }
+        }*/
 
         // nombre de nourrices
         private int _nbrNourrices;
@@ -160,6 +160,20 @@ namespace SMA.src.Model
             }
 
             _listFourmis.Remove(f);
+        }
+
+
+        // tue toutes les fourmis pour un reset
+        public void KillThemAll()
+        {
+            NbrChasseuses = 0;
+            NbrNourrices = 0;
+            NbrOuvrieres = 0;
+            _id = 0;
+
+            _listFourmis.Clear();
+
+            _reine = (Queen)MakeFourmi(TYPE_QUEEN);
         }
     }
 }

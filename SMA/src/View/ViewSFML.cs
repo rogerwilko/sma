@@ -40,7 +40,7 @@ namespace SMA.src.View
             //_imgFourmi = new Image("img/lol.bmp");
             _spriteFourmi = new Sprite(_imgFourmi);
 
-            new ConfigWin().Show();
+            //new ConfigWin().Show();
         }
 
 

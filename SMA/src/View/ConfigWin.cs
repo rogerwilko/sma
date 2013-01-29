@@ -15,28 +15,58 @@ namespace SMA.src.View
         public ConfigWin()
         {
             InitializeComponent();
+
+
+            // abonnement des méthodes du contrôleur
+
+            bStart.Click += ConfigController.Instance.startClick;
+            bReset.Click += ConfigController.Instance.resetClick;
+            speedTB.Scroll += ConfigController.Instance.speedScroll;
+            rowsTB.Scroll += ConfigController.Instance.rowsScroll;
+            colsTB.Scroll += ConfigController.Instance.colsScroll;
+
+            speedTB.Value = MainController.Instance.Fps;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        public String GetStart()
         {
-            if (bStart.Text == "STOP")
-            {
-                bStart.Text = "START";
-                MainController.Instance.Paused = true;
-            }
-
-            else
-            {
-                bStart.Text = "STOP";
-                MainController.Instance.Paused = false;
-            }
+            return bStart.Text;
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        public void SetStart(String txt)
+        {
+            bStart.Text = txt;
+        }
+
+        public void UpdateSpeed()
         {
             labSpeed.Text = speedTB.Value.ToString();
-            MainController.Instance.Fps = speedTB.Value;
-            MainController.Instance.View.setFPS(speedTB.Value);
+        }
+
+        public int GetSpeed()
+        {
+            return speedTB.Value;
+        }
+
+        public void UpdateRows()
+        {
+            labRows.Text = rowsTB.Value.ToString();
+        }
+
+        public int GetRows()
+        {
+            return rowsTB.Value;
+        }
+
+        public void UpdateCols()
+        {
+            labCols.Text = colsTB.Value.ToString();
+        }
+
+        public int GetCols()
+        {
+            return colsTB.Value;
         }
     }
 }
