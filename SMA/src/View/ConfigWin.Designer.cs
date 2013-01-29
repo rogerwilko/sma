@@ -66,7 +66,7 @@
             this.speedTB.SmallChange = 10;
             this.speedTB.TabIndex = 1;
             this.speedTB.TickFrequency = 10;
-            this.speedTB.Value = 10;
+            this.speedTB.Value = 7;
             // 
             // label1
             // 
@@ -84,9 +84,9 @@
             this.labSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labSpeed.Location = new System.Drawing.Point(421, 46);
             this.labSpeed.Name = "labSpeed";
-            this.labSpeed.Size = new System.Drawing.Size(22, 16);
+            this.labSpeed.Size = new System.Drawing.Size(15, 16);
             this.labSpeed.TabIndex = 3;
-            this.labSpeed.Text = "10";
+            this.labSpeed.Text = "7";
             // 
             // groupBox1
             // 

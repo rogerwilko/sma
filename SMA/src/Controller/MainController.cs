@@ -38,7 +38,7 @@ namespace SMA.src.Controller
             _tourCourant = 0;
             _paused = false;
             //_view = new ViewSFML();
-            _fps = 10;
+            _fps = 7;
         }
 
 

@@ -19,9 +19,9 @@ namespace SMA.src.Model
 
         public Fourmi Pondre()
         {
-            int probaChasseuse = (int)Distributions.Instance.Gaussienne(50, 20) * Fourmiliere.Instance.NbrFourmis / (Fourmiliere.Instance.NbrChasseuses + 1);
-            int probaOuvriere = (int)Distributions.Instance.Gaussienne(50, 20) * Fourmiliere.Instance.NbrFourmis / (Fourmiliere.Instance.NbrOuvrieres + 1);
-            int probaNourrice = (int)Distributions.Instance.Gaussienne(50, 20) * Fourmiliere.Instance.NbrFourmis / (Fourmiliere.Instance.NbrNourrices  + 1);
+            int probaChasseuse = (int)(Distributions.Instance.Gaussienne(50, 20) * Fourmiliere.Instance.NbrFourmis / (Fourmiliere.Instance.NbrChasseuses + 1));
+            int probaOuvriere = (int)(Distributions.Instance.Gaussienne(50, 20) * Fourmiliere.Instance.NbrFourmis / (Fourmiliere.Instance.NbrOuvrieres + 1));
+            int probaNourrice = (int)(Distributions.Instance.Gaussienne(50, 20) * Fourmiliere.Instance.NbrFourmis / (Fourmiliere.Instance.NbrNourrices  + 1));
 
             Fourmi f;
 
@@ -29,10 +29,13 @@ namespace SMA.src.Model
                 f = Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_CHASSEUSE);
 
             else if (probaOuvriere >= probaChasseuse && probaOuvriere >= probaNourrice) // ouvrière
-                f = Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_CHASSEUSE);
+                f = Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_OUVRIERE);
 
             else // nourrice
-                f = Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_CHASSEUSE);
+                f = Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_NOURRICE);
+
+            f.PosX = PosX;
+            f.PosY = PosY;
 
             return f;
         }

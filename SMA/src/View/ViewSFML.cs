@@ -17,8 +17,12 @@ namespace SMA.src.View
         private Image _imgFourmi;
         private Sprite _spriteFourmi;
 
+        private Image _imgLarve;
+        private Sprite _spriteLarve;
+
+
         private /*const*/ uint WIDTH = 800; // largeur de la fenêtre en pixels
-        private /*const*/ uint HEIGHT = 600; // hauteur de la fenêtre en pixels
+        private /*const*/ uint HEIGHT = 800; // hauteur de la fenêtre en pixels
 
 
         // Initialisation de la vue
@@ -37,8 +41,10 @@ namespace SMA.src.View
             // chargement des images
 
             _imgFourmi = new Image("img/fourmi.png");
-            //_imgFourmi = new Image("img/lol.bmp");
             _spriteFourmi = new Sprite(_imgFourmi);
+
+            _imgLarve = new Image("img/larve.png");
+            _spriteLarve = new Sprite(_imgLarve);
 
             //new ConfigWin().Show();
         }
@@ -88,12 +94,72 @@ namespace SMA.src.View
             // pour chaque petite fourmi
             foreach (Fourmi f in Fourmiliere.Instance.ListFourmis)
             {
-                _spriteFourmi.Position = new Vector2(f.PosX * caseW, f.PosY * caseH);
-                if(f.Type == Fourmiliere.TYPE_QUEEN) // reine plus grande
-                    _spriteFourmi.Scale = new Vector2(((float)0.5), ((float)0.5));
+                Sprite spr;
+
+                if (f.Etat == 1) // fourmi
+                    spr = _spriteFourmi;
+
+                else // larve
+                    spr = _spriteLarve;
+
+
+                spr.Center = new Vector2(spr.Width / 2, spr.Height / 2);
+
+
+                spr.Position = new Vector2(f.PosX * caseW, f.PosY * caseH);
+
+    
+                // orientation
+
+
+                switch (f.Direction)
+                {
+                    case Fourmi.DIR_BOTTOM:
+                        //spr.FlipY(true);
+                        spr.Rotation = 180;
+                        break;
+
+                    case Fourmi.DIR_BOTTOMLEFT:
+                        spr.Rotation = 135;
+                        break;
+
+                    case Fourmi.DIR_BOTTOMRIGHT:
+                        spr.Rotation = -135;
+                        break;
+
+                    case Fourmi.DIR_LEFT:
+                        spr.Rotation = 90;
+                        break;
+
+                    case Fourmi.DIR_RIGHT:
+                        spr.Rotation = -90;
+                        break;
+
+                    case Fourmi.DIR_TOP:
+                        spr.Rotation = 0;
+                        break;
+
+                    case Fourmi.DIR_TOPLEFT:
+                        spr.Rotation = 45;
+                        break;
+
+                    case Fourmi.DIR_TOPRIGHT:
+                        spr.Rotation = -45;
+                        break;
+                }
+
+                if (f.Type == Fourmiliere.TYPE_QUEEN) // reine plus grande
+                {
+                    spr.Scale = new Vector2(((float)0.35), ((float)0.35));
+                }
+
                 else
-                    _spriteFourmi.Scale = new Vector2(((float)0.3), ((float)0.3));
-                _app.Draw(_spriteFourmi);
+                {
+                    spr.Scale = new Vector2(((float)0.20), ((float)0.20));
+                    //spr.Color = Color.Red;
+                }
+
+                _app.Draw(spr);
             }
 
 
