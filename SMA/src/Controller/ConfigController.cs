@@ -49,6 +49,21 @@ namespace SMA.src.Controller
             }
         }
 
+        public void colorsClick(object sender, EventArgs e)
+        {
+            if (_win.GetColors() == "Activate colors on Antzz")
+            {
+                _win.SetColors("Deactivate colors on Antzz");
+                MainController.Instance.Colored = true;
+            }
+
+            else
+            {
+                _win.SetColors("Activate colors on Antzz");
+                MainController.Instance.Colored = false;
+            }
+        }
+
         public void speedScroll(object sender, EventArgs e)
         {
             _win.UpdateSpeed();

@@ -14,8 +14,11 @@ namespace SMA.src.View
     {
         private RenderWindow _app;
 
-        private Image _imgFourmi;
-        private Sprite _spriteFourmi;
+        /*private Image _imgFourmi;
+        private Sprite _spriteFourmi;*/
+
+        private Image[] _imgFourmi = new Image[8];
+        private Sprite[] _spriteFourmi = new Sprite[8];
 
         private Image _imgLarve;
         private Sprite _spriteLarve;
@@ -40,8 +43,30 @@ namespace SMA.src.View
 
             // chargement des images
 
-            _imgFourmi = new Image("img/fourmi.png");
-            _spriteFourmi = new Sprite(_imgFourmi);
+            _imgFourmi[0] = new Image("img/fourmi_top.png");
+            _spriteFourmi[0] = new Sprite(_imgFourmi[0]);
+
+            _imgFourmi[1] = new Image("img/fourmi_topright.png");
+            _spriteFourmi[1] = new Sprite(_imgFourmi[1]);
+
+            _imgFourmi[2] = new Image("img/fourmi_right.png");
+            _spriteFourmi[2] = new Sprite(_imgFourmi[2]);
+
+            _imgFourmi[3] = new Image("img/fourmi_bottomright.png");
+            _spriteFourmi[3] = new Sprite(_imgFourmi[3]);
+
+            _imgFourmi[4] = new Image("img/fourmi_bottom.png");
+            _spriteFourmi[4] = new Sprite(_imgFourmi[4]);
+
+            _imgFourmi[5] = new Image("img/fourmi_bottomleft.png");
+            _spriteFourmi[5] = new Sprite(_imgFourmi[5]);
+
+            _imgFourmi[6] = new Image("img/fourmi_left.png");
+            _spriteFourmi[6] = new Sprite(_imgFourmi[6]);
+
+            _imgFourmi[7] = new Image("img/fourmi_topleft.png");
+            _spriteFourmi[7] = new Sprite(_imgFourmi[7]);
+
 
             _imgLarve = new Image("img/larve.png");
             _spriteLarve = new Sprite(_imgLarve);
@@ -70,83 +95,109 @@ namespace SMA.src.View
 
             _app.Clear(new Color(200,100,0));
 
-            //WIDTH = _app.Width;
-            //HEIGHT = _app.Height;
-
-
-            int caseW = (int)WIDTH / MainController.Instance.Cols; // largeur d'une case en pixels
-            int caseH = (int)HEIGHT / MainController.Instance.Rows; // hauteur d'une case en pixels
+            int caseW = (int)WIDTH / Terrain.Instance.Cols; // largeur d'une case en pixels
+            int caseH = (int)HEIGHT / Terrain.Instance.Rows; // hauteur d'une case en pixels
 
             // affichage de la grille
 
-            for (int y = 0; y < MainController.Instance.Rows; ++y) // lignes
+            for (int y = 0; y < Terrain.Instance.Rows; ++y) // lignes
             {
                 Shape line = Shape.Line(new Vector2(0, y * caseH), new Vector2(WIDTH, y * caseH), 1, new Color(220, 120, 0));
                 _app.Draw(line);
             }
 
-            for (int x = 0; x < MainController.Instance.Cols; ++x) // colonnes
+            for (int x = 0; x < Terrain.Instance.Cols; ++x) // colonnes
             {
                 Shape line = Shape.Line(new Vector2(x * caseW, 0), new Vector2(x * caseW, HEIGHT), 1, new Color(220, 120, 0));
                 _app.Draw(line);
             }
 
+
+            // affichage du terrain
+            
+            Int16[,] map = Terrain.Instance.Map;
+
+            for (int x = 0; x < Terrain.Instance.Cols; ++x)
+            {
+                for (int y = 0; y < Terrain.Instance.Rows; ++y)
+                {
+                    if (map[x,y] == Terrain.TERRAIN_GALLERIE)
+                    {
+                        Shape rect = Shape.Rectangle(new Vector2(x * caseW, y * caseH), new Vector2(x * caseW + caseW, y * caseH + caseH), new Color(250, 150, 50), 1, new Color(220, 120, 0));
+                        _app.Draw(rect);
+                    }
+
+                    else if (map[x, y] == Terrain.TERRAIN_PIERRE)
+                    {
+                        Shape rect = Shape.Rectangle(new Vector2(x * caseW, y * caseH), new Vector2(x * caseW + caseW, y * caseH + caseH), new Color(120, 150, 70), 1, new Color(220, 120, 0));
+                        _app.Draw(rect);
+                    }
+                }
+            }
+
+
             // pour chaque petite fourmi
             foreach (Fourmi f in Fourmiliere.Instance.ListFourmis)
             {
-                Sprite spr;
+                Sprite spr = null;
 
-                if (f.Etat == 1) // fourmi
-                    spr = _spriteFourmi;
 
-                else // larve
+                // choix du sprite
+
+                if (f.Etat == 0) // larve
                     spr = _spriteLarve;
 
-
-                spr.Center = new Vector2(spr.Width / 2, spr.Height / 2);
-
-
-                spr.Position = new Vector2(f.PosX * caseW, f.PosY * caseH);
-
-    
-                // orientation
-
-
-                switch (f.Direction)
+                else // fourmi
                 {
-                    case Fourmi.DIR_BOTTOM:
-                        //spr.FlipY(true);
-                        spr.Rotation = 180;
-                        break;
+                    // orientation
 
-                    case Fourmi.DIR_BOTTOMLEFT:
-                        spr.Rotation = 135;
-                        break;
+                    switch (f.Direction)
+                    {
+                        case Fourmi.DIR_BOTTOM:
+                            //spr.FlipY(true);
+                            //spr.Rotation = 180;
+                            spr = _spriteFourmi[4];
+                            break;
 
-                    case Fourmi.DIR_BOTTOMRIGHT:
-                        spr.Rotation = -135;
-                        break;
+                        case Fourmi.DIR_BOTTOMLEFT:
+                            //spr.Rotation = 135;
+                            spr = _spriteFourmi[5];
+                            break;
 
-                    case Fourmi.DIR_LEFT:
-                        spr.Rotation = 90;
-                        break;
+                        case Fourmi.DIR_BOTTOMRIGHT:
+                            //spr.Rotation = -135;
+                            spr = _spriteFourmi[3];
+                            break;
 
-                    case Fourmi.DIR_RIGHT:
-                        spr.Rotation = -90;
-                        break;
+                        case Fourmi.DIR_LEFT:
+                            //spr.Rotation = 90;
+                            spr = _spriteFourmi[6];
+                            break;
 
-                    case Fourmi.DIR_TOP:
-                        spr.Rotation = 0;
-                        break;
+                        case Fourmi.DIR_RIGHT:
+                            //spr.Rotation = -90;
+                            spr = _spriteFourmi[2];
+                            break;
 
-                    case Fourmi.DIR_TOPLEFT:
-                        spr.Rotation = 45;
-                        break;
+                        case Fourmi.DIR_TOP:
+                            //spr.Rotation = 0;
+                            spr = _spriteFourmi[0];
+                            break;
 
-                    case Fourmi.DIR_TOPRIGHT:
-                        spr.Rotation = -45;
-                        break;
+                        case Fourmi.DIR_TOPLEFT:
+                            //spr.Rotation = 45;
+                            spr = _spriteFourmi[7];
+                            break;
+
+                        case Fourmi.DIR_TOPRIGHT:
+                            //spr.Rotation = -45;
+                            spr = _spriteFourmi[1];
+                            break;
+                    }
                 }
+
+
+                // taille
 
                 if (f.Type == Fourmiliere.TYPE_QUEEN) // reine plus grande
                 {
@@ -156,8 +207,45 @@ namespace SMA.src.View
                 else
                 {
                     spr.Scale = new Vector2(((float)0.20), ((float)0.20));
-                    //spr.Color = Color.Red;
                 }
+
+
+
+                //spr.Center = new Vector2(spr.Width / 2, spr.Height / 2);
+
+                spr.Position = new Vector2(f.PosX * caseW - (spr.Width - caseW) / 2, f.PosY * caseH - (spr.Height - caseH) / 2);
+
+
+                
+
+                // couleurs au-dessus des fourmis selon le type activées
+                if (MainController.Instance.Colored)
+                {
+                    Color colHead = new Color(255, 255, 255); ;
+
+                    switch (f.Type) // différentes couleurs selon le type de la fourmi
+                    {
+                        case Fourmiliere.TYPE_CHASSEUSE:
+                            colHead = new Color(255, 0, 0);
+                            break;
+
+                        case Fourmiliere.TYPE_NOURRICE:
+                            colHead = new Color(50, 50, 255);
+                            break;
+
+                        case Fourmiliere.TYPE_OUVRIERE:
+                            colHead = new Color(0, 255, 0);
+                            break;
+
+                        case Fourmiliere.TYPE_QUEEN:
+                            colHead = new Color(255, 255, 0);
+                            break;
+                    }
+
+                    Shape line = Shape.Line(new Vector2(f.PosX * caseW - 7, f.PosY * caseH - 10), new Vector2(f.PosX * caseW + spr.Width, f.PosY * caseH - 10), 2, colHead);
+                    _app.Draw(line);
+                }
+
 
                 _app.Draw(spr);
             }

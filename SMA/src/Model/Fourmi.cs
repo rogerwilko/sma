@@ -99,8 +99,8 @@ namespace SMA.Model
             _type = typ;
             _nom = nom;
 
-            _posX = MainController.Instance.Rows / 2;
-            _posY = MainController.Instance.Cols / 2;
+            _posX = Terrain.Instance.Cols / 2;
+            _posY = Terrain.Instance.Rows / 2;
 
             Console.WriteLine(nom + " (type = "+typ+") is born.");
 
@@ -113,13 +113,18 @@ namespace SMA.Model
         }
 
 
-        private StrategieMarche _strategieMarche; // stratégie pour le déplacement
 
+        // données pour la stratégie de déplacement
 
-        // données pour la stratégie de déplacement normal
-        private int _restePas; // nombre de pas restants dans la direction courante
-        private int _xPas; // direction et vitesse x
-        private int _yPas; // direction et vitesse y
+        protected StrategieMarche _strategieMarche; // stratégie pour le déplacement
+
+        protected int _restePas; // nombre de pas restants dans la direction courante
+        protected int _xPas; // direction et vitesse x
+        protected int _yPas; // direction et vitesse y
+
+        // nouvelle position calculée (pas forcément la position actuelle si il s'agit d'un mur !)
+        protected int _newX;
+        protected int _newY;
 
 
         public void deplacerNormal()
@@ -131,8 +136,8 @@ namespace SMA.Model
             {
                 _restePas = (int)Distributions.Instance.PseudoAleatoire(10,15);
 
-                _xPas = (int)Distributions.Instance.PseudoAleatoire(-3, 2);
-                _yPas = (int)Distributions.Instance.PseudoAleatoire(-3, 2);
+                _xPas = (int)Distributions.Instance.PseudoAleatoire(-2, 1);
+                _yPas = (int)Distributions.Instance.PseudoAleatoire(-2, 1);
 
                 // calcul de la direction
 
@@ -167,14 +172,19 @@ namespace SMA.Model
             }
 
 
-            int newX = PosX + _xPas;
-            int newY = PosY + _yPas;
+            _newX = PosX + _xPas;
+            _newY = PosY + _yPas;
 
-            if (newX > 0 && newX < MainController.Instance.Cols)
-                PosX = newX;
+            if (_newX > 0 && _newX < Terrain.Instance.Cols
+                && _newY > 0 && _newY < Terrain.Instance.Rows
+                && Terrain.Instance.Map[_newX, _newY] == Terrain.TERRAIN_GALLERIE)
+            {
+                PosX = _newX;
+                PosY = _newY;
+            }
 
-            if (newY > 0 && newY < MainController.Instance.Rows)
-                PosY = newY;
+            /*else
+                deplacerNormal();*/
         }
 
         public void communiquer()
@@ -190,9 +200,9 @@ namespace SMA.Model
 
             if (Etat == 0) // fourmi encore à l'état de larve
             {
-                int p = (int)Distributions.Instance.PseudoAleatoire(0, 1000);
+                int p = (int)Distributions.Instance.PseudoAleatoire(0, 2000);
 
-                if (age > p) // Probabilité de (age / 1000) de grandir
+                if (age > p) // Probabilité de (age / 2000) de grandir
                 {
                     Etat = 1;
                 }
@@ -203,8 +213,7 @@ namespace SMA.Model
 
             if(Type != Fourmiliere.TYPE_QUEEN) // la reine est immortelle
             {
-                //int p = (int)Distributions.Instance.PseudoAleatoire(500, 1500);
-                int p = (int)Distributions.Instance.Gaussienne(1200, 200);
+                int p = (int)Distributions.Instance.Gaussienne(2500, 500) ;
                 //Console.WriteLine("p = " + p);
 
                 if (age > p) // Probabilité de mourir dans d'atroces souffrances
@@ -216,6 +225,8 @@ namespace SMA.Model
 
             // déplacements
 
+            _strategieMarche();
+            _strategieMarche();
             _strategieMarche();
         }
 

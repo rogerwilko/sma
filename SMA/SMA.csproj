@@ -80,6 +80,7 @@
     <Compile Include="src\Model\Nourrice.cs" />
     <Compile Include="src\Model\Ouvriere.cs" />
     <Compile Include="src\Model\Queen.cs" />
+    <Compile Include="src\Model\Terrain.cs" />
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\View\ConfigWin.cs">

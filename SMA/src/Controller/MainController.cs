@@ -33,22 +33,26 @@ namespace SMA.src.Controller
         private MainController()
         {
             // valeurs par défaut pour la simu
-            _rows = 100;
-            _cols = 100;
+            Terrain.Instance.Rows = 100;
+            Terrain.Instance.Cols = 100;
+            Terrain.Instance.MakeTerrain();
             _tourCourant = 0;
             _paused = false;
+            _colored = false;
             //_view = new ViewSFML();
-            _fps = 7;
+            _fps = 10;
         }
 
 
         // permet de relancer la simu avec des options autres que celles par défaut
         public void ResetAll(int nbrcol, int nbrrow, int fps)
         {
-            _rows = nbrrow;
-            _cols = nbrcol;
+            Terrain.Instance.Rows = nbrrow;
+            Terrain.Instance.Cols = nbrcol;
+            Terrain.Instance.MakeTerrain();
             _tourCourant = 0;
             _paused = false;
+            _colored = false;
             //_view = new ViewSFML();
             _fps = fps;
 
@@ -67,23 +71,6 @@ namespace SMA.src.Controller
             set { _view = value; }
         }
 
-
-        private int _cols; // nombre de colonnes
-
-        public int Cols
-        {
-            get { return _cols; }
-            set { _cols = value; }
-        }
-
-
-        private int _rows; // nombre de lignes
-
-        public int Rows
-        {
-            get { return _rows; }
-            set { _rows = value; }
-        }
 
 
         private int _fps; // framerate
@@ -114,6 +101,14 @@ namespace SMA.src.Controller
             set { _paused = value; }
         }
 
+        private bool _colored;
+
+        public bool Colored
+        {
+            get { return _colored; }
+            set { _colored = value; }
+        }
+
 
         // Méthode principale
         public void Execute()
@@ -127,15 +122,18 @@ namespace SMA.src.Controller
 
             // on a quelques fourmis de départ
 
-            for (int i = 0 ; i < 10 ; ++i)
+           /* for (int i = 0 ; i < 5 ; ++i)
                 Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_CHASSEUSE);
 
-            for (int i = 0; i < 10; ++i)
+            for (int i = 0; i < 5; ++i)
                 Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_NOURRICE);
 
-            for (int i = 0; i < 30; ++i)
+            for (int i = 0; i < 15; ++i)
                 Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_OUVRIERE);
-
+            */
+            // création et ajoute de l'unique reine à la fourmilière
+            Fourmiliere.Instance.Reine = (Queen)Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_QUEEN);
+            
             
             _view.setFPS(_fps);
 
@@ -144,7 +142,7 @@ namespace SMA.src.Controller
 
 
             // tant que la vue est ouverte et qu'il y a des petites fourmis
-            while (_view.IsRunning() && Fourmiliere.Instance.NbrFourmis > 1)
+            while (_view.IsRunning() /*&& Fourmiliere.Instance.NbrFourmis > 1*/)
             {
                 if (!_paused)
                 {

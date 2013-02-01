@@ -15,7 +15,9 @@ namespace SMA.src.Model
             get
             {
                 if (_instance == null)
+                {
                     _instance = new Fourmiliere();
+                }
 
                 return _instance;
             }
@@ -24,8 +26,7 @@ namespace SMA.src.Model
 
         private Fourmiliere()
         {
-            // création et ajoute de l'unique reine à la fourmilière
-            _reine = (Queen)MakeFourmi(TYPE_QUEEN);
+            
         }
 
 
@@ -94,6 +95,26 @@ namespace SMA.src.Model
         {
             get { return /*_nbrOuvrieres + _nbrNourrices + _nbrLarves + _nbrChasseuses + 1*/ _listFourmis.Count; }
         }
+
+
+
+        private int _cols; // nombre de colonnes
+
+        public int Cols
+        {
+            get { return _cols; }
+            set { _cols = value; }
+        }
+
+
+        private int _rows; // nombre de lignes
+
+        public int Rows
+        {
+            get { return _rows; }
+            set { _rows = value; }
+        }
+
 
 
         public const int TYPE_CHASSEUSE = 0;
@@ -173,7 +194,8 @@ namespace SMA.src.Model
 
             _listFourmis.Clear();
 
-            _reine = (Queen)MakeFourmi(TYPE_QUEEN);
+            //_reine = (Queen)MakeFourmi(TYPE_QUEEN);
+            //_terrain = new Terrain();
         }
     }
 }

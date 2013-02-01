@@ -40,6 +40,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.colsTB = new System.Windows.Forms.TrackBar();
             this.rowsTB = new System.Windows.Forms.TrackBar();
+            this.bColors = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.speedTB)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.colsTB)).BeginInit();
@@ -48,9 +49,9 @@
             // 
             // bStart
             // 
-            this.bStart.Location = new System.Drawing.Point(12, 370);
+            this.bStart.Location = new System.Drawing.Point(251, 370);
             this.bStart.Name = "bStart";
-            this.bStart.Size = new System.Drawing.Size(458, 53);
+            this.bStart.Size = new System.Drawing.Size(219, 53);
             this.bStart.TabIndex = 0;
             this.bStart.Text = "STOP";
             this.bStart.UseVisualStyleBackColor = true;
@@ -59,14 +60,14 @@
             // 
             this.speedTB.Cursor = System.Windows.Forms.Cursors.Hand;
             this.speedTB.Location = new System.Drawing.Point(127, 46);
-            this.speedTB.Maximum = 100;
+            this.speedTB.Maximum = 50;
             this.speedTB.Name = "speedTB";
             this.speedTB.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.speedTB.Size = new System.Drawing.Size(279, 45);
             this.speedTB.SmallChange = 10;
             this.speedTB.TabIndex = 1;
             this.speedTB.TickFrequency = 10;
-            this.speedTB.Value = 7;
+            this.speedTB.Value = 10;
             // 
             // label1
             // 
@@ -84,9 +85,9 @@
             this.labSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labSpeed.Location = new System.Drawing.Point(421, 46);
             this.labSpeed.Name = "labSpeed";
-            this.labSpeed.Size = new System.Drawing.Size(15, 16);
+            this.labSpeed.Size = new System.Drawing.Size(22, 16);
             this.labSpeed.TabIndex = 3;
-            this.labSpeed.Text = "7";
+            this.labSpeed.Text = "10";
             // 
             // groupBox1
             // 
@@ -157,7 +158,7 @@
             this.colsTB.Cursor = System.Windows.Forms.Cursors.Hand;
             this.colsTB.Location = new System.Drawing.Point(115, 86);
             this.colsTB.Maximum = 200;
-            this.colsTB.Minimum = 5;
+            this.colsTB.Minimum = 20;
             this.colsTB.Name = "colsTB";
             this.colsTB.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.colsTB.Size = new System.Drawing.Size(279, 45);
@@ -171,7 +172,7 @@
             this.rowsTB.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rowsTB.Location = new System.Drawing.Point(115, 35);
             this.rowsTB.Maximum = 200;
-            this.rowsTB.Minimum = 5;
+            this.rowsTB.Minimum = 20;
             this.rowsTB.Name = "rowsTB";
             this.rowsTB.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.rowsTB.Size = new System.Drawing.Size(279, 45);
@@ -180,11 +181,21 @@
             this.rowsTB.TickFrequency = 10;
             this.rowsTB.Value = 100;
             // 
+            // bColors
+            // 
+            this.bColors.Location = new System.Drawing.Point(12, 370);
+            this.bColors.Name = "bColors";
+            this.bColors.Size = new System.Drawing.Size(219, 53);
+            this.bColors.TabIndex = 5;
+            this.bColors.Text = "Activate colors on Antzz";
+            this.bColors.UseVisualStyleBackColor = true;
+            // 
             // ConfigWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 444);
+            this.Controls.Add(this.bColors);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labSpeed);
             this.Controls.Add(this.label1);
@@ -216,5 +227,6 @@
         private System.Windows.Forms.Button bReset;
         private System.Windows.Forms.Label labCols;
         private System.Windows.Forms.Label labRows;
+        private System.Windows.Forms.Button bColors;
     }
 }

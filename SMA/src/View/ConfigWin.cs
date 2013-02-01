@@ -20,6 +20,7 @@ namespace SMA.src.View
             // abonnement des méthodes du contrôleur
 
             bStart.Click += ConfigController.Instance.startClick;
+            bColors.Click += ConfigController.Instance.colorsClick;
             bReset.Click += ConfigController.Instance.resetClick;
             speedTB.Scroll += ConfigController.Instance.speedScroll;
             rowsTB.Scroll += ConfigController.Instance.rowsScroll;
@@ -37,6 +38,16 @@ namespace SMA.src.View
         public void SetStart(String txt)
         {
             bStart.Text = txt;
+        }
+
+        public String GetColors()
+        {
+            return bColors.Text;
+        }
+
+        public void SetColors(String txt)
+        {
+            bColors.Text = txt;
         }
 
         public void UpdateSpeed()
