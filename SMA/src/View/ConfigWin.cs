@@ -22,6 +22,7 @@ namespace SMA.src.View
             bStart.Click += ConfigController.Instance.startClick;
             bColors.Click += ConfigController.Instance.colorsClick;
             bReset.Click += ConfigController.Instance.resetClick;
+            bScreenshot.Click += ConfigController.Instance.screenClick;
             speedTB.Scroll += ConfigController.Instance.speedScroll;
             rowsTB.Scroll += ConfigController.Instance.rowsScroll;
             colsTB.Scroll += ConfigController.Instance.colsScroll;

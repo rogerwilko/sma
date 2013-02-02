@@ -263,6 +263,11 @@ namespace SMA.src.View
         }
 
 
+        public void Screenshot(String path = "screen.bmp")
+        {
+            _app.Capture().SaveToFile(path);
+        }
+
 
         /// <summary>
         /// Function called when the window is closed

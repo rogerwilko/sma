@@ -11,5 +11,6 @@ namespace SMA.src.View
         void UpdateView();
         bool IsRunning();
         void setFPS(int fps);
+        void Screenshot(String path);
     }
 }

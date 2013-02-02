@@ -41,6 +41,7 @@
             this.colsTB = new System.Windows.Forms.TrackBar();
             this.rowsTB = new System.Windows.Forms.TrackBar();
             this.bColors = new System.Windows.Forms.Button();
+            this.bScreenshot = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.speedTB)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.colsTB)).BeginInit();
@@ -49,9 +50,9 @@
             // 
             // bStart
             // 
-            this.bStart.Location = new System.Drawing.Point(251, 370);
+            this.bStart.Location = new System.Drawing.Point(339, 370);
             this.bStart.Name = "bStart";
-            this.bStart.Size = new System.Drawing.Size(219, 53);
+            this.bStart.Size = new System.Drawing.Size(131, 53);
             this.bStart.TabIndex = 0;
             this.bStart.Text = "STOP";
             this.bStart.UseVisualStyleBackColor = true;
@@ -185,16 +186,26 @@
             // 
             this.bColors.Location = new System.Drawing.Point(12, 370);
             this.bColors.Name = "bColors";
-            this.bColors.Size = new System.Drawing.Size(219, 53);
+            this.bColors.Size = new System.Drawing.Size(131, 53);
             this.bColors.TabIndex = 5;
             this.bColors.Text = "Activate colors on Antzz";
             this.bColors.UseVisualStyleBackColor = true;
+            // 
+            // bScreenshot
+            // 
+            this.bScreenshot.Location = new System.Drawing.Point(175, 370);
+            this.bScreenshot.Name = "bScreenshot";
+            this.bScreenshot.Size = new System.Drawing.Size(131, 53);
+            this.bScreenshot.TabIndex = 6;
+            this.bScreenshot.Text = "Take a screenshot";
+            this.bScreenshot.UseVisualStyleBackColor = true;
             // 
             // ConfigWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 444);
+            this.Controls.Add(this.bScreenshot);
             this.Controls.Add(this.bColors);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labSpeed);
@@ -228,5 +239,6 @@
         private System.Windows.Forms.Label labCols;
         private System.Windows.Forms.Label labRows;
         private System.Windows.Forms.Button bColors;
+        private System.Windows.Forms.Button bScreenshot;
     }
 }

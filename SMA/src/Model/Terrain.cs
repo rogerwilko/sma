@@ -66,11 +66,23 @@ namespace SMA.src.Model
         }
 
 
-        // permet de savoir si il y a des blocs de gallerie autour, pour générer des galleries aléatoirement
+        /*// permet de savoir si il y a des blocs de gallerie autour d'une case, pour générer des galleries entières aléatoirement
         private bool someGallerieAutour(int x, int y)
         {
-            return false;
+            return  testGallerie(x-1,y) || testGallerie(x-1,y-1) || testGallerie(x-1,y + 1) || // gauche
+                    testGallerie(x + 1, y) || testGallerie(x + 1, y - 1) || testGallerie(x + 1, y + 1) || // droite
+                    testGallerie(x, y - 1) ||  // haut
+                    testGallerie(x, y + 1) // bas
+                    ;
         }
+
+        // permet de faire le test d'existence de gallerie d'une case donnée, en vérifiant qu'on ne sort pas (utilisé par someGallerieAutour)
+        private bool testGallerie(int x, int y)
+        {
+            return (x > 0 && x < Terrain.Instance.Cols
+                && y > 0 && y < Terrain.Instance.Rows
+                && Terrain.Instance.Map[x, y] == Terrain.TERRAIN_GALLERIE);
+        }*/
 
         public void MakeTerrain()
         {
@@ -94,17 +106,11 @@ namespace SMA.src.Model
                     {
                         int proba = (int)Distributions.Instance.PseudoAleatoire(0, 100);
 
-                        if (proba < 80)
+                        if (proba < 99)
                             _map[i, j] = TERRAIN_TERRE; // dig it !
 
-                        else if (proba < 82)
+                        else
                             _map[i, j] = TERRAIN_PIERRE;
-
-                        else // générateur de vraies galleries
-                            if(someGallerieAutour(i, j))
-                                _map[i, j] = TERRAIN_GALLERIE;
-                            else
-                                _map[i, j] = TERRAIN_TERRE;
                     }
                 }
             }

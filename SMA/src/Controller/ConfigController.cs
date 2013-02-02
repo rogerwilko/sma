@@ -81,6 +81,11 @@ namespace SMA.src.Controller
             MainController.Instance.ResetAll(cols, rows, /*speedTB.Value*/10);
         }
 
+        public void screenClick(object sender, EventArgs e)
+        {
+            MainController.Instance.View.Screenshot("screenshots/screen_" + DateTime.Now.Year + "_" + DateTime.Now.Month + "_" + DateTime.Now.Day + "_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Second + ".bmp");
+        }
+
         public void colsScroll(object sender, EventArgs e)
         {
             _win.UpdateCols();
