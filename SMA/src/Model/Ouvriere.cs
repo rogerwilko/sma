@@ -16,7 +16,7 @@ namespace SMA.src.Model
 
         public Ouvriere(int type, String nom) : base(type, nom)
         {
-            _strategieMarche = deplacerOuvriere;
+            _strategieMarche = deplacerOuvriere; // on change la stratégie par défaut
         }
 
 

@@ -35,10 +35,10 @@ namespace SMA.src.Controller
             // valeurs par défaut pour la simu
             Terrain.Instance.Rows = 100;
             Terrain.Instance.Cols = 100;
-            Terrain.Instance.MakeTerrain();
-            _tourCourant = 0;
-            _paused = false;
-            _colored = false;
+            //Terrain.Instance.MakeTerrain();
+            //_tourCourant = 0;
+            //_paused = false;
+            //_colored = false;
             //_view = new ViewSFML();
             _fps = 10;
         }
@@ -49,10 +49,10 @@ namespace SMA.src.Controller
         {
             Terrain.Instance.Rows = nbrrow;
             Terrain.Instance.Cols = nbrcol;
-            Terrain.Instance.MakeTerrain();
-            _tourCourant = 0;
-            _paused = false;
-            _colored = false;
+            //Terrain.Instance.MakeTerrain();
+            //_tourCourant = 0;
+            //_paused = false;
+            // colored = false;
             //_view = new ViewSFML();
             _fps = fps;
 
@@ -120,21 +120,19 @@ namespace SMA.src.Controller
             }
 
 
-            // on a quelques fourmis de départ
+            _tourCourant = 0;
+            _paused = false;
+            _colored = false;
 
-           /* for (int i = 0 ; i < 5 ; ++i)
-                Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_CHASSEUSE);
 
-            for (int i = 0; i < 5; ++i)
-                Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_NOURRICE);
-
-            for (int i = 0; i < 15; ++i)
-                Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_OUVRIERE);
-            */
-            // création et ajoute de l'unique reine à la fourmilière
+            // création et ajout de l'unique reine à la fourmilière
             Fourmiliere.Instance.Reine = (Queen)Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_QUEEN);
-            
-            
+
+            Fourmiliere.Instance.StockNourriture = 100; // nourriture de départ
+
+            Terrain.Instance.MakeTerrain(); // création du terrain
+
+
             _view.setFPS(_fps);
 
 

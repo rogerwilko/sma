@@ -97,6 +97,24 @@ namespace SMA.src.Model
         }
 
 
+        private int _StockNourriture; // stock de nourriture
+
+        public int StockNourriture
+        {
+            get { return _StockNourriture; }
+            set { _StockNourriture = value; }
+        }
+
+        public int BesoinNourriture() // besoins en nourriture
+        {
+            int besoin = NbrFourmis - StockNourriture;
+
+            if (besoin < 0)
+                besoin = 0;
+
+            return besoin ;
+        }
+
 
         private int _cols; // nombre de colonnes
 

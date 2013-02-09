@@ -187,8 +187,30 @@ namespace SMA.Model
                 deplacerNormal();*/
         }
 
-        public void communiquer()
+        public void Communiquer()
         {
+        }
+
+
+        public void Manger()
+        {
+            if (Fourmiliere.Instance.StockNourriture != 0) // nourriture restante : on mange
+            {
+                Fourmiliere.Instance.StockNourriture--;
+            }
+
+            else // famine
+            {
+                if (Type != Fourmiliere.TYPE_QUEEN) // la reine est immortelle
+                {
+                    int p = (int)Distributions.Instance.Gaussienne(50, 30);
+
+                    if (p > 80) // Probabilité de mourir de faim
+                    {
+                        Fourmiliere.Instance.KillFourmi(this);
+                    }
+                }
+            }
         }
 
 
@@ -228,6 +250,10 @@ namespace SMA.Model
             _strategieMarche();
             _strategieMarche();
             _strategieMarche();
+
+            // miam
+
+            //Manger();
         }
 
         public void manger(int qtt)

@@ -76,7 +76,10 @@
     <Compile Include="src\Model\Fourmi.cs" />
     <Compile Include="src\Model\Fourmiliere.cs" />
     <Compile Include="src\Model\GroupeFourmis.cs" />
+    <Compile Include="src\Model\GroupeOuvrieres.cs" />
     <Compile Include="src\Model\MersenneTwister.cs" />
+    <Compile Include="src\Model\MessageOlfactif.cs" />
+    <Compile Include="src\Model\MessagesManager.cs" />
     <Compile Include="src\Model\Nourrice.cs" />
     <Compile Include="src\Model\Ouvriere.cs" />
     <Compile Include="src\Model\Queen.cs" />
