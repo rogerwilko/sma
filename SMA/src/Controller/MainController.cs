@@ -128,7 +128,11 @@ namespace SMA.src.Controller
             // création et ajout de l'unique reine à la fourmilière
             Fourmiliere.Instance.Reine = (Queen)Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_QUEEN);
 
-            Fourmiliere.Instance.StockNourriture = 100; // nourriture de départ
+            Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_NOURRICE);
+
+
+            Fourmiliere.Instance.StockNourriture = 10000; // nourriture de départ
+            Fourmiliere.Instance.TotalNourriture = 0;
 
             Terrain.Instance.MakeTerrain(); // création du terrain
 
@@ -149,6 +153,8 @@ namespace SMA.src.Controller
                     Console.WriteLine("Nombre de fourmis chasseuses : " + Fourmiliere.Instance.NbrChasseuses);
                     Console.WriteLine("Nombre de fourmis ouvrières : " + Fourmiliere.Instance.NbrOuvrieres);
                     Console.WriteLine("Nombre de fourmis nourrices : " + Fourmiliere.Instance.NbrNourrices);
+                    Console.WriteLine("Stocks de nourriture : " + Fourmiliere.Instance.StockNourriture);
+                    Console.WriteLine("Nourriture totale consommée : " + Fourmiliere.Instance.TotalNourriture);
 
                     // on utilise une copie de la liste car elle peut être modifiée !
                     Fourmi[] list = new Fourmi[Fourmiliere.Instance.NbrFourmis];
@@ -163,6 +169,7 @@ namespace SMA.src.Controller
 
                     // reine
 
+                    Fourmiliere.Instance.Reine.Pondre();
                     Fourmiliere.Instance.Reine.Pondre();
 
 

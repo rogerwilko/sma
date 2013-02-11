@@ -16,17 +16,17 @@ namespace SMA.src.Model
 
         public Ouvriere(int type, String nom) : base(type, nom)
         {
-            _strategieMarche = deplacerOuvriere; // on change la stratégie par défaut
+            _strategieDeplacement = DeplacerOuvriere; // on change la stratégie par défaut
         }
 
 
         // déplacement spécifique aux ouvrières
-        public void deplacerOuvriere()
+        public void DeplacerOuvriere()
         {
             if (Etat == 0)
                 return;
 
-            deplacerNormal();
+            DeplacerNormal();
 
             // terre à l'horizon !
             if (_newX > 0 && _newX < Terrain.Instance.Cols

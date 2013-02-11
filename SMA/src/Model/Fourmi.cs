@@ -104,7 +104,7 @@ namespace SMA.Model
 
             Console.WriteLine(nom + " (type = "+typ+") is born.");
 
-            _strategieMarche = deplacerNormal;
+            _strategieDeplacement = DeplacerNormal;
         }
 
         ~Fourmi()
@@ -116,7 +116,7 @@ namespace SMA.Model
 
         // données pour la stratégie de déplacement
 
-        protected StrategieMarche _strategieMarche; // stratégie pour le déplacement
+        protected StrategieMarche _strategieDeplacement; // stratégie pour le déplacement
 
         protected int _restePas; // nombre de pas restants dans la direction courante
         protected int _xPas; // direction et vitesse x
@@ -127,14 +127,12 @@ namespace SMA.Model
         protected int _newY;
 
 
-        public void deplacerNormal()
+        // calcul d'un pas aléatoire (direction et distance) et de la nouvelle position (sans toutefois déplacer la Fourmi)
+        protected void CalculerPas()
         {
-            if (Etat == 0)
-                return;
-
-            if(_restePas == 0)
+            if (_restePas == 0)
             {
-                _restePas = (int)Distributions.Instance.PseudoAleatoire(10,15);
+                _restePas = (int)Distributions.Instance.PseudoAleatoire(10, 15);
 
                 _xPas = (int)Distributions.Instance.PseudoAleatoire(-2, 1);
                 _yPas = (int)Distributions.Instance.PseudoAleatoire(-2, 1);
@@ -171,9 +169,17 @@ namespace SMA.Model
                 _restePas--;
             }
 
-
             _newX = PosX + _xPas;
             _newY = PosY + _yPas;
+        }
+
+
+        public void DeplacerNormal()
+        {
+            if (Etat == 0)
+                return;
+
+            CalculerPas();
 
             if (_newX > 0 && _newX < Terrain.Instance.Cols
                 && _newY > 0 && _newY < Terrain.Instance.Rows
@@ -182,9 +188,6 @@ namespace SMA.Model
                 PosX = _newX;
                 PosY = _newY;
             }
-
-            /*else
-                deplacerNormal();*/
         }
 
         public void Communiquer()
@@ -197,6 +200,7 @@ namespace SMA.Model
             if (Fourmiliere.Instance.StockNourriture != 0) // nourriture restante : on mange
             {
                 Fourmiliere.Instance.StockNourriture--;
+                Fourmiliere.Instance.TotalNourriture++;
             }
 
             else // famine
@@ -222,11 +226,16 @@ namespace SMA.Model
 
             if (Etat == 0) // fourmi encore à l'état de larve
             {
-                int p = (int)Distributions.Instance.PseudoAleatoire(0, 2000);
+                int p = (int)Distributions.Instance.PseudoAleatoire(0, 5000);
 
-                if (age > p) // Probabilité de (age / 2000) de grandir
+                if (age > p) // Probabilité de (age / 5000) de grandir
                 {
-                    Etat = 1;
+                    int centerX = Terrain.Instance.Cols / 2;
+                    int centerY = Terrain.Instance.Rows / 2;
+
+                    // on peut éclore seulement quand on est situé dans le couvoir au milieu de la map !
+                    if ((PosX > centerX - 5) && ((PosX < centerX + 5)) && (PosY > centerY - 5) && ((PosY < centerY + 5)))
+                        Etat = 1;
                 }
             }
 
@@ -247,13 +256,15 @@ namespace SMA.Model
 
             // déplacements
 
-            _strategieMarche();
-            _strategieMarche();
-            _strategieMarche();
+            _strategieDeplacement();
+            _strategieDeplacement();
+            _strategieDeplacement();
+            //_strategieDeplacement();
 
             // miam
 
-            //Manger();
+            if(Etat != 0)
+                Manger();
         }
 
         public void manger(int qtt)

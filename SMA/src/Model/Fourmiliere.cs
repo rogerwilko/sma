@@ -105,14 +105,23 @@ namespace SMA.src.Model
             set { _StockNourriture = value; }
         }
 
-        public int BesoinNourriture() // besoins en nourriture
+        private int _totalNourriture;
+
+        public int TotalNourriture
         {
-            int besoin = NbrFourmis - StockNourriture;
+            get { return _totalNourriture; }
+            set { _totalNourriture = value; }
+        }
 
-            if (besoin < 0)
-                besoin = 0;
+        public double BesoinNourriture() // besoins en nourriture
+        {
+            //int besoin = NbrFourmis - StockNourriture;
+            double besoin = StockNourriture / NbrFourmis;
 
-            return besoin ;
+            if (besoin <= 0)
+                besoin = 0.1;
+
+            return 1/besoin * 200 ;
         }
 
 

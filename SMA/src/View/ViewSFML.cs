@@ -98,6 +98,11 @@ namespace SMA.src.View
             int caseW = (int)WIDTH / Terrain.Instance.Cols; // largeur d'une case en pixels
             int caseH = (int)HEIGHT / Terrain.Instance.Rows; // hauteur d'une case en pixels
 
+
+            int centerX = Terrain.Instance.Cols / 2;
+            int centerY = Terrain.Instance.Rows / 2;
+
+
             // affichage de la grille
 
             for (int y = 0; y < Terrain.Instance.Rows; ++y) // lignes
@@ -123,7 +128,13 @@ namespace SMA.src.View
                 {
                     if (map[x,y] == Terrain.TERRAIN_GALLERIE)
                     {
-                        Shape rect = Shape.Rectangle(new Vector2(x * caseW, y * caseH), new Vector2(x * caseW + caseW, y * caseH + caseH), new Color(250, 150, 50), 1, new Color(220, 120, 0));
+                        Shape rect;
+
+                        if ((x > centerX - 5) && ((x < centerX + 5)) && (y > centerY - 5) && ((y < centerY + 5)))
+                            rect = Shape.Rectangle(new Vector2(x * caseW, y * caseH), new Vector2(x * caseW + caseW, y * caseH + caseH), new Color(250, 200, 50), 1, new Color(220, 120, 0));
+                        else
+                            rect = Shape.Rectangle(new Vector2(x * caseW, y * caseH), new Vector2(x * caseW + caseW, y * caseH + caseH), new Color(250, 150, 50), 1, new Color(220, 120, 0));
+                        
                         _app.Draw(rect);
                     }
 
