@@ -197,7 +197,7 @@ namespace SMA.Model
 
         public void Manger()
         {
-            if (Fourmiliere.Instance.StockNourriture != 0) // nourriture restante : on mange
+            if (Fourmiliere.Instance.StockNourriture > 0) // nourriture restante : on mange
             {
                 Fourmiliere.Instance.StockNourriture--;
                 Fourmiliere.Instance.TotalNourriture++;

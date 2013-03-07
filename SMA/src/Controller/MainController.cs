@@ -131,7 +131,7 @@ namespace SMA.src.Controller
             Fourmiliere.Instance.MakeFourmi(Fourmiliere.TYPE_NOURRICE);
 
 
-            Fourmiliere.Instance.StockNourriture = 10000; // nourriture de départ
+            Fourmiliere.Instance.StockNourriture = 5000; // nourriture de départ
             Fourmiliere.Instance.TotalNourriture = 0;
 
             Terrain.Instance.MakeTerrain(); // création du terrain
